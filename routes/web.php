@@ -36,12 +36,14 @@ Route::get('/dashboard', [FactoryDashboardController::class, 'index'])
     ->middleware(['auth', 'factory'])
     ->name('dashboard');
 
-Route::middleware(['auth', 'factory'])->group(function () {
+Route::middleware(['auth', 'factory', 'role:factory_owner,super_admin'])->group(function () {
     Route::get('/dashboard/profile', [FactoryProfileController::class, 'edit'])
         ->name('factory.profile.edit');
     Route::put('/dashboard/profile', [FactoryProfileController::class, 'update'])
         ->name('factory.profile.update');
+});
 
+Route::middleware(['auth', 'factory'])->group(function () {
     Route::get('/dashboard/products', [FactoryProductController::class, 'index'])
         ->name('factory.products.index');
     Route::get('/dashboard/products/create', [FactoryProductController::class, 'create'])
