@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'app_name' => 'منصة فاكتوري زون',
+    'app_name' => 'فاكتوري زون',
 
     'nav' => [
         'home' => 'الرئيسية',
@@ -10,14 +10,56 @@ return [
         'language_ar' => 'العربية',
     ],
 
+    'common' => [
+        'search' => 'بحث',
+        'filter' => 'تصفية',
+        'status' => 'الحالة',
+        'all' => 'الكل',
+        'pending' => 'قيد المراجعة',
+        'approved' => 'مقبول',
+        'suspended' => 'موقوف',
+        'new' => 'جديد',
+        'in_review' => 'قيد المتابعة',
+        'closed' => 'مغلق',
+        'no_results' => 'لا توجد نتائج.',
+        'save' => 'حفظ',
+        'delete' => 'حذف',
+        'update' => 'تحديث',
+        'dashboard'=>'لوحة التحكم'
+
+    ],
+
+    'marketplace' => [
+        'factories_title' => 'دليل المصانع',
+        'products_title' => 'منتجات المنصة',
+        'zone_label' => 'المنطقة الصناعية',
+        'all_zones' => 'جميع المناطق',
+        'category_label' => 'التصنيف',
+        'all_categories' => 'جميع التصنيفات',
+        'visit_storefront' => 'زيارة صفحة المصنع',
+        'no_factories' => 'لا توجد مصانع مطابقة.',
+        'no_products' => 'لا توجد منتجات مطابقة.',
+        'price_on_request' => 'السعر عند الطلب',
+        'request_quote' => 'طلب عرض سعر',
+        'quantity' => 'الكمية',
+        'your_name' => 'اسمك',
+        'your_email' => 'بريدك الإلكتروني',
+    ],
+
+    'storefront' => [
+        'products_heading' => 'المنتجات',
+        'no_products_yet' => 'لا توجد منتجات بعد.',
+        'inquiry_sent' => 'تم إرسال طلب الاتصال بنجاح.',
+    ],
+
     'factory_register' => [
         'title' => 'تسجيل مصنع جديد',
-        'intro' => 'قم بإنشاء مساحة العمل الخاصة بالمصنع وحساب المسؤول. يمكن لمشرف المنصة مراجعة طلبك والموافقة عليه لاحقاً.',
+        'intro' => 'أنشئ مساحة عمل لمصنعك وحساب المالك. يمكن لمسؤول المنصة مراجعة طلبك والموافقة عليه لاحقاً.',
         'factory_name' => 'اسم المصنع',
         'legal_name' => 'الاسم القانوني (اختياري)',
         'country' => 'الدولة',
         'city' => 'المدينة',
-        'contact_section' => 'مسؤول الاتصال',
+        'contact_section' => 'بيانات مسؤول الاتصال',
         'contact_name' => 'الاسم الكامل',
         'contact_email' => 'البريد الإلكتروني',
         'contact_phone' => 'رقم الهاتف (اختياري)',
@@ -27,9 +69,90 @@ return [
     ],
 
     'factory_thankyou' => [
-        'title' => 'شكراً لتسجيل مصنعك',
-        'body_1' => 'تم استلام طلب تسجيل المصنع. يمكن لمشرف المنصة مراجعة وتفعيل حسابك لاحقاً. يمكنك الوصول إلى لوحة التحكم بعد الموافقة.',
+        'title' => 'شكرًا لتسجيل مصنعك',
+        'body_1' => 'تم استلام طلب تسجيل المصنع. يمكن لمسؤول المنصة مراجعة طلبك والموافقة عليه. ستتمكن من الدخول إلى لوحة التحكم بعد الموافقة.',
         'body_2' => 'يمكنك إغلاق هذه الصفحة الآن.',
     ],
-];
 
+    'dashboard' => [
+        'factory_dashboard_title' => 'لوحة تحكم المسؤول',
+        'status' => 'الحالة',
+        'edit_profile' => 'تعديل الملف التعريفي',
+        'products' => 'المنتجات',
+        'storefront_published' => 'منشور في صفحة المصنع',
+        'marketplace_published' => 'منشور في السوق',
+        'new_inquiries' => 'طلبات جديدة',
+        'recent_products' => 'أحدث المنتجات',
+        'recent_inquiries' => 'أحدث الطلبات',
+        'no_products_yet' => 'لا توجد منتجات بعد.',
+        'no_inquiries_yet' => 'لا توجد طلبات بعد.',
+        'marketplace_label' => 'السوق',
+        'published' => 'منشور',
+        'hidden' => 'مخفي',
+        'view_all_inquiries' => 'عرض جميع الطلبات',
+        'not_linked_factory' => 'لا توجد مصنع مرتبط بحسابك بعد.',
+    ],
+
+    'inquiries' => [
+        'title' => 'الطلبات',
+        'status_updated' => 'تم تحديث حالة الطلب.',
+        'unknown_buyer' => 'مشتري غير معروف',
+        'source' => 'المصدر',
+        'quantity' => 'الكمية',
+    ],
+
+    'admin' => [
+        'dashboard_title' => 'لوحة تحكم المسؤول',
+        'overview_text' => 'ملخص للمصانع والمنتجات والطلبات على المنصة.',
+        'factories_metrics' => 'المصانع (الإجمالي / المقبول / قيد المراجعة)',
+        'products_metrics' => 'المنتجات (الإجمالي / السوق / صفحة المصنع)',
+        'inquiries_metrics' => 'الطلبات (آخر ٣٠ يوم / الجديد)',
+        'manage_factories' => 'إدارة المصانع',
+        'manage_zones' => 'إدارة المناطق الصناعية',
+        'manage_categories' => 'إدارة التصنيفات',
+        'zones_title' => 'المناطق الصناعية',
+        'zone_created' => 'تم إنشاء المنطقة.',
+        'zone_updated' => 'تم تحديث المنطقة.',
+        'zone_deleted' => 'تم حذف المنطقة.',
+        'add_zone' => 'إضافة منطقة جديدة',
+        'name' => 'الاسم',
+        'region' => 'المنطقة',
+        'city' => 'المدينة',
+        'add_zone_button' => 'إضافة منطقة',
+        'factories_count' => 'عدد المصانع',
+        'categories_title' => 'تصنيفات المنتجات',
+        'category_created' => 'تم إنشاء التصنيف.',
+        'category_updated' => 'تم تحديث التصنيف.',
+        'category_deleted' => 'تم حذف التصنيف.',
+        'add_category' => 'إضافة تصنيف جديد',
+        'slug_optional' => 'المعرف (اختياري)',
+        'add_category_button' => 'إضافة تصنيف',
+        'factory'=>'مصنع',
+
+    ],
+
+    'email' => [
+        'general_inquiry' => 'طلب عام',
+        'hello' => 'مرحباً',
+        'new_inquiry_subject' => 'تم استلام طلب جديد',
+        'new_inquiry_intro' => 'تم استلام طلب جديد من سوق فاكتوري زون.',
+        'product' => 'المنتج',
+        'buyer_name' => 'اسم المشتري',
+        'buyer_email' => 'بريد المشتري',
+        'buyer_phone' => 'هاتف المشتري',
+        'quantity' => 'الكمية',
+        'source' => 'المصدر',
+        'message' => 'الرسالة',
+        'na' => 'لا يوجد',
+        'follow_up' => 'يرجى تسجيل الدخول إلى لوحة تحكم فاكتوري زون لمتابعة هذا الطلب.',
+    ],
+
+    'auth' => [
+        'login' => 'تسجيل الدخول',
+        'email' => 'البريد الإلكتروني',
+        'password' => 'كلمة المرور',
+        'remember_me' => 'تذكرني',
+        'login_error' => 'بيانات الدخول غير صحيحة.',
+        'form_error' => 'حدثت بعض الأخطاء في البيانات المدخلة.',
+    ],
+];

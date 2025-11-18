@@ -29,8 +29,21 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->text('description')->nullable();
             $table->json('attributes')->nullable(); // dimensions, material, etc.
+
+            // Catalog / pricing metadata
+            $table->tinyInteger('status')->default(0); // 0=draft,1=active,2=inactive
+            $table->decimal('base_price', 15, 2)->nullable();
+            $table->char('currency', 3)->nullable();
+            $table->string('unit', 50)->nullable(); // e.g. kg, piece, box
+
+            // Legacy/simple pricing + pack metadata
             $table->decimal('price', 15, 2)->nullable();
             $table->string('price_type')->default('on_request'); // fixed, on_request
+            $table->unsignedInteger('pack_size')->nullable();
+            $table->decimal('pack_price', 15, 2)->nullable();
+
+            // Publish flags
+            $table->boolean('is_published')->default(false);
             $table->boolean('is_published_storefront')->default(false);
             $table->boolean('is_published_marketplace')->default(false);
             $table->timestamps();
@@ -38,14 +51,7 @@ return new class extends Migration
             $table->unique(['factory_id', 'slug']);
         });
 
-        Schema::create('product_images', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
-            $table->string('path');
-            $table->string('alt_text')->nullable();
-            $table->unsignedInteger('sort_order')->default(0);
-            $table->timestamps();
-        });
+
     }
 
     /**
@@ -53,9 +59,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_images');
         Schema::dropIfExists('products');
         Schema::dropIfExists('product_categories');
     }
 };
-

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductImage extends Model
+class ProductTranslation extends Model
 {
     use HasFactory;
 
@@ -14,9 +14,11 @@ class ProductImage extends Model
      */
     protected $fillable = [
         'product_id',
-        'path',
-        'alt_text',
-        'sort_order',
+        'locale',
+        'name',
+        'slug',
+        'short_description',
+        'long_description',
     ];
 
     public function product()

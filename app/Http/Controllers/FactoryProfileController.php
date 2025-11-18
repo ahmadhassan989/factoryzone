@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Industry;
 use App\Models\Zone;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class FactoryProfileController extends Controller
         return view('factory.profile.edit', [
             'factory' => $factory,
             'zones' => Zone::orderBy('name')->get(),
+            'industries' => Industry::orderBy('name_en')->get(),
         ]);
     }
 
@@ -26,10 +28,10 @@ class FactoryProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'legal_name' => ['nullable', 'string', 'max:255'],
             'zone_id' => ['nullable', 'integer', 'exists:zones,id'],
+            'industry_id' => ['nullable', 'integer', 'exists:industries,id'],
             'country' => ['nullable', 'string', 'max:255'],
             'city' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'industries' => ['nullable', 'string'],
             'capabilities' => ['nullable', 'string'],
             'certifications' => ['nullable', 'string'],
             'google_maps_url' => ['nullable', 'url'],
@@ -43,4 +45,3 @@ class FactoryProfileController extends Controller
             ->with('status', 'factory_profile_updated');
     }
 }
-

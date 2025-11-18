@@ -23,7 +23,8 @@ return new class extends Migration
         Schema::create('factories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('zone_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('name');
+            $table->string('name_en');
+            $table->string('name_ar')->nullable();
             $table->string('legal_name')->nullable();
             $table->string('slug')->unique();
             $table->string('country')->nullable();
@@ -36,7 +37,6 @@ return new class extends Migration
             $table->string('secondary_color')->nullable();
             $table->string('preferred_locale')->nullable();
             $table->text('description')->nullable();
-            $table->text('industries')->nullable();
             $table->text('capabilities')->nullable();
             $table->text('certifications')->nullable();
             $table->string('google_maps_url')->nullable();
@@ -54,4 +54,3 @@ return new class extends Migration
         Schema::dropIfExists('zones');
     }
 };
-

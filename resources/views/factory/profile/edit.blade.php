@@ -61,15 +61,22 @@
         </div>
 
         <div>
-            <x-input-label for="description" :value="__('Description')" />
-            <textarea id="description" name="description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 text-sm">{{ old('description', $factory->description) }}</textarea>
-            <x-input-error :messages="$errors->get('description')" />
+            <x-input-label for="industry_id" :value="__('Industry')" />
+            <select id="industry_id" name="industry_id" class="mt-1 block w-full rounded-md border-gray-300 text-sm">
+                <option value="">{{ __('Select industry') }}</option>
+                @foreach ($industries as $industry)
+                    <option value="{{ $industry->id }}" @selected($factory->industry_id === $industry->id)>
+                        {{ $industry->name_en }}
+                    </option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('industry_id')" />
         </div>
 
         <div>
-            <x-input-label for="industries" :value="__('Industries')" />
-            <textarea id="industries" name="industries" rows="2" class="mt-1 block w-full rounded-md border-gray-300 text-sm">{{ old('industries', $factory->industries) }}</textarea>
-            <x-input-error :messages="$errors->get('industries')" />
+            <x-input-label for="description" :value="__('Description')" />
+            <textarea id="description" name="description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 text-sm">{{ old('description', $factory->description) }}</textarea>
+            <x-input-error :messages="$errors->get('description')" />
         </div>
 
         <div>
@@ -109,4 +116,3 @@
         </div>
     </form>
 </x-layout>
-

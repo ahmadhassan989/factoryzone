@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewInquiryNotification;
 use App\Models\Factory;
 use App\Models\Inquiry;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class InquiryController extends Controller
 {
@@ -33,7 +35,7 @@ class InquiryController extends Controller
 
         $source = $request->getHost() === config('app.url') ? 'marketplace' : 'storefront';
 
-        Inquiry::create([
+        $inquiry = Inquiry::create([
             'factory_id' => $factory->id,
             'product_id' => $product?->id,
             'buyer_name' => $data['buyer_name'] ?? null,
@@ -45,7 +47,12 @@ class InquiryController extends Controller
             'status' => 'new',
         ]);
 
+        if ($factory->contact_email) {
+            Mail::to($factory->contact_email)->send(
+                new NewInquiryNotification($factory, $inquiry, $product)
+            );
+        }
+
         return back()->with('status', 'inquiry_submitted');
     }
 }
-

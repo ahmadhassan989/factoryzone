@@ -20,7 +20,14 @@ class Product extends Model
         'sku',
         'description',
         'attributes',
+        'status',
+        'base_price',
+        'currency',
+        'unit',
+        'is_published',
         'price',
+        'pack_size',
+        'pack_price',
         'price_type',
         'is_published_storefront',
         'is_published_marketplace',
@@ -31,7 +38,10 @@ class Product extends Model
      */
     protected $casts = [
         'attributes' => 'array',
+        'base_price' => 'decimal:2',
         'price' => 'decimal:2',
+        'pack_price' => 'decimal:2',
+        'is_published' => 'bool',
         'is_published_storefront' => 'bool',
         'is_published_marketplace' => 'bool',
     ];
@@ -46,9 +56,14 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 
-    public function images()
+    public function media()
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany(ProductMedia::class);
+    }
+
+    public function translations()
+    {
+        return $this->hasMany(ProductTranslation::class);
     }
 
     public function tags()
@@ -66,4 +81,3 @@ class Product extends Model
         return 'slug';
     }
 }
-

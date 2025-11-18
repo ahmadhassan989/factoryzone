@@ -15,8 +15,14 @@
         </p>
     @endif
 
+    @if (session('status') === 'inquiry_submitted')
+        <div class="mb-4 rounded-md bg-green-50 p-4 text-sm text-green-700">
+            {{ __('ui.storefront.inquiry_sent') }}
+        </div>
+    @endif
+
     <h2 class="text-lg font-semibold mb-3">
-        {{ __('Products') }}
+        {{ __('ui.storefront.products_heading') }}
     </h2>
 
     <div class="space-y-4">
@@ -32,23 +38,47 @@
                 </div>
                 <div class="text-xs text-gray-600 text-right space-y-2">
                     @if ($product->price_type === 'fixed' && $product->price !== null)
-                        <p>{{ number_format($product->price, 2) }}</p>
+                        <p class="font-semibold">{{ number_format($product->price, 2) }}</p>
                     @else
-                        <p>{{ __('Price on request') }}</p>
+                        <p>{{ __('ui.marketplace.price_on_request') }}</p>
                     @endif
-                    <form method="POST" action="{{ route('inquiries.store') }}">
+                    <form method="POST" action="{{ route('inquiries.store') }}" class="space-y-1">
                         @csrf
                         <input type="hidden" name="factory_id" value="{{ $factory->id }}">
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="number" name="quantity" min="1" placeholder="{{ __('ui.marketplace.quantity') }}"
+                            class="block w-full rounded-md border-gray-300 text-[11px]" />
+                        <input type="text" name="buyer_name" placeholder="{{ __('ui.marketplace.your_name') }}"
+                            class="block w-full rounded-md border-gray-300 text-[11px]" />
+                        <input type="email" name="buyer_email" placeholder="{{ __('ui.marketplace.your_email') }}"
+                            class="block w-full rounded-md border-gray-300 text-[11px]" />
                         <x-primary-button>
-                            {{ __('Request quote') }}
+                            {{ __('ui.marketplace.request_quote') }}
                         </x-primary-button>
                     </form>
+
+                    @if ($product->price_type === 'fixed' && $product->price !== null)
+                        <form method="POST" action="{{ route('orders.store') }}" class="space-y-1">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <select name="unit_type"
+                                class="block w-full rounded-md border-gray-300 text-[11px]">
+                                <option value="piece">{{ __('ui.marketplace.unit_type_piece') }}</option>
+                                <option value="pack">{{ __('ui.marketplace.unit_type_pack') }}</option>
+                            </select>
+                            <input type="number" name="quantity" min="1"
+                                placeholder="{{ __('ui.marketplace.quantity') }}"
+                                class="block w-full rounded-md border-gray-300 text-[11px]" />
+                            <x-primary-button>
+                                {{ __('ui.marketplace.buy_now') }}
+                            </x-primary-button>
+                        </form>
+                    @endif
                 </div>
             </div>
         @empty
             <p class="text-sm text-gray-600">
-                {{ __('No products yet.') }}
+                {{ __('ui.storefront.no_products_yet') }}
             </p>
         @endforelse
     </div>
@@ -57,4 +87,3 @@
         {{ $products->links() }}
     </div>
 </x-layout>
-

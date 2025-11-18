@@ -25,6 +25,12 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
+            $user = $request->user();
+
+            if ($user && method_exists($user, 'isSuperAdmin') && $user->isSuperAdmin()) {
+                return redirect()->route('admin.factories.index');
+            }
+
             return redirect()->intended('/dashboard');
         }
 
@@ -43,4 +49,3 @@ class AuthController extends Controller
         return redirect('/');
     }
 }
-

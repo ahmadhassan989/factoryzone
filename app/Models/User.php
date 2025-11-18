@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsTo(Factory::class);
     }
 
+    public function isBuyer(): bool
+    {
+        return $this->role === 'buyer';
+    }
+
     public function isSuperAdmin(): bool
     {
         return $this->role === 'super_admin';

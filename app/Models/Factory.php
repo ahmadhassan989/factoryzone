@@ -14,6 +14,7 @@ class Factory extends Model
      */
     protected $fillable = [
         'zone_id',
+        'industry_id',
         'name',
         'legal_name',
         'slug',
@@ -27,7 +28,6 @@ class Factory extends Model
         'secondary_color',
         'preferred_locale',
         'description',
-        'industries',
         'capabilities',
         'certifications',
         'google_maps_url',
@@ -37,6 +37,12 @@ class Factory extends Model
     public function zone()
     {
         return $this->belongsTo(Zone::class);
+    }
+
+
+    public function industry()
+    {
+        return $this->belongsTo(Industry::class);
     }
 
     public function users()
@@ -54,9 +60,13 @@ class Factory extends Model
         return $this->hasMany(Inquiry::class);
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';
     }
 }
-

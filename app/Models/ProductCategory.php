@@ -17,6 +17,8 @@ class ProductCategory extends Model
         'slug',
         'description',
         'parent_id',
+        'industry_id',
+        'sort_order',
     ];
 
     public function parent()
@@ -29,9 +31,18 @@ class ProductCategory extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    public function industry()
+    {
+        return $this->belongsTo(Industry::class);
+    }
+
     public function products()
     {
         return $this->hasMany(Product::class);
     }
-}
 
+    public function translations()
+    {
+        return $this->hasMany(ProductCategoryTranslation::class);
+    }
+}
